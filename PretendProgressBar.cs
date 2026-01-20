@@ -14,8 +14,6 @@ namespace PretendProgressBar
         static SimulateTaskHandle sthandle;
         static SimulatedProgressIncrement simulProgressStep;
 
-        const double k_ForeverHardTimeoutSeconds = 120.0;
-
         public static void HandleSo(PretendProgressBarSo pretend)
         {
             if (hanle != null) return;
@@ -121,16 +119,6 @@ static void ProgressNoBlockUpdate()
         string detail = SafeDetail(sthandle.detail, s_progress);
 
         bool cancelled = ShowProgress(s_showCancelBtn, title, detail, s_progress);
-        if (s_isForever && !s_showCancelBtn)
-        {
-            if ((now - s_startTime) >= k_ForeverHardTimeoutSeconds)
-            {
-                Debug.LogWarning($"PretendProgress: Forever mode without cancel button hit hard-timeout ({k_ForeverHardTimeoutSeconds}s). Stopping to avoid locking the Editor.");
-                StopNoBlock();
-                return;
-            }
-        }
-
         if (cancelled || timeUp)
         {
             StopNoBlock();
@@ -226,15 +214,6 @@ static void StopNoBlock()
             {
                 while (true)
                 {
-                    if (!showCancelBtn)
-                    {
-                        double now = EditorApplication.timeSinceStartup;
-                        if (now - start >= k_ForeverHardTimeoutSeconds)
-                        {
-                            Debug.LogWarning($"PretendProgress: Forever mode without cancel button hit hard-timeout ({k_ForeverHardTimeoutSeconds}s). Stopping to avoid locking the Editor.");
-                            break;
-                        }
-                    }
                     float prevProgress = progress;
                     progress += simulProgressStep.TryGetIncrement();
                     float displayProgress = Mathf.Repeat(progress, 1f);
@@ -318,6 +297,7 @@ static void StopNoBlock()
         public string title;
         public string detail;
         public Queue<string> detaillist;
+        bool hasValidTasks;
 
         static readonly SimulateTask k_FallbackTask = new SimulateTask
         {
@@ -352,9 +332,6 @@ static void StopNoBlock()
                 else
                 {
                     curentTask = GetSimulateTast();
-                    if (curentTask == null) curentTask = k_FallbackTask;
-
-                    EnsureDetailQueue(curentTask);
                 }
             }
 
@@ -366,22 +343,18 @@ static void StopNoBlock()
         {
             if (task == null)
             {
-                detaillist = new Queue<string>(k_FallbackTask.detail);
+                detaillist = new Queue<string>(new[] { "Processing... {P}%" });
                 return;
             }
-
             IEnumerable<string> details = task.detail;
-
             if (details == null)
             {
-                detaillist = new Queue<string>(k_FallbackTask.detail);
+                detaillist = new Queue<string>(new[] { "Processing... {P}%" });
                 return;
             }
-
             var arr = details.Where(s => !string.IsNullOrEmpty(s)).ToList();
             if (arr.Count== 0)
-                arr = k_FallbackTask.detail;
-
+                arr = new List<string> { "Processing... {P}%" };
             detaillist = new Queue<string>(arr);
         }
 
@@ -389,7 +362,6 @@ static void StopNoBlock()
         {
             if (detaillist == null || detaillist.Count == 0)
                 return "Processing... {P}%";
-
             return detaillist.Peek();
         }
 
@@ -399,6 +371,7 @@ static void StopNoBlock()
 
             if (table == null || table.simulateTasksTable == null || table.simulateTasksTable.Count == 0)
             {
+                hasValidTasks = false;
                 simualateQueue.Enqueue(k_FallbackTask);
                 simualteTableTaskTime = 1f;
                 return;
@@ -410,12 +383,13 @@ static void StopNoBlock()
                 case SimulateTaskTable.SimulateRunType.Order:
                 {
                     foreach (var i in table.simulateTasksTable)
-                        simualateQueue.Enqueue(i);
+                        if (i != null)
+                            simualateQueue.Enqueue(i);
                     break;
                 }
                 case SimulateTaskTable.SimulateRunType.Random:
                 {
-                    var list = new List<SimulateTask>(table.simulateTasksTable);
+                    var list = table.simulateTasksTable.Where(t => t != null).ToList();
                     while (list.Count > 0)
                     {
                         int randomdex = UnityEngine.Random.Range(0, list.Count);
@@ -427,19 +401,30 @@ static void StopNoBlock()
                 case SimulateTaskTable.SimulateRunType.Reverse:
                 {
                     for (int i = table.simulateTasksTable.Count - 1; i >= 0; i--)
-                        simualateQueue.Enqueue(table.simulateTasksTable[i]);
+                    {
+                        var task = table.simulateTasksTable[i];
+                        if (task != null)
+                            simualateQueue.Enqueue(task);
+                    }
                     break;
                 }
                 default:
                 {
                     foreach (var i in table.simulateTasksTable)
-                        simualateQueue.Enqueue(i);
+                        if (i != null)
+                            simualateQueue.Enqueue(i);
                     break;
                 }
             }
 
+            hasValidTasks = simualateQueue.Count > 0;
             simualteTableTaskTime = table.simulateTasksTable.Sum(v => v != null ? v.taskTime : 0f);
             if (simualteTableTaskTime <= 0f) simualteTableTaskTime = 1f;
+
+            if (!hasValidTasks)
+            {
+                simualateQueue.Enqueue(k_FallbackTask);
+            }
         }
 
         public SimulateTask GetSimulateTast()
@@ -449,7 +434,7 @@ static void StopNoBlock()
                 return re;
             }
 
-            if (cycle && simulateTaskTable != null)
+            if (hasValidTasks && simulateTaskTable != null)
             {
                 IniTable(simulateTaskTable);
                 return GetSimulateTast();
