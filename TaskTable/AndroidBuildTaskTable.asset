@@ -1,0 +1,114 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f24f1e8d6adb242b908357f129d917, type: 3}
+  m_Name: AndroidBuildTaskTable
+  m_EditorClassIdentifier: 
+  simulateTasksTable:
+  - title: Prepare Build Environment
+    detail:
+    - Validating project settings... {P}%
+    - Checking Android SDK/NDK/JDK... {P}%
+    - Resolving scripting backend settings... {P}%
+    - Preparing build cache...
+    taskTime: 1.2
+  - title: Refresh Asset Database
+    detail:
+    - Scanning assets... {P}%
+    - Importing changes... {P}%
+    - Updating meta references...
+    - Finalizing asset database...
+    taskTime: 1
+  - title: Build Player Scripts
+    detail:
+    - Compiling C# scripts... {P}%
+    - Generating assemblies... {P}%
+    - Processing asmdef dependencies...
+    - Applying code stripping rules...
+    taskTime: 2
+  - title: IL2CPP Conversion
+    detail:
+    - Converting IL to C++... {P}%
+    - Generating C++ code... {P}%
+    - Optimizing generated sources...
+    - Preparing native toolchain...
+    taskTime: 3
+  - title: Native Compilation
+    detail:
+    - Compiling native code... {P}%
+    - Linking libraries... {P}%
+    - Stripping symbols... {P}%
+    - Generating libil2cpp artifacts...
+    taskTime: 3.5
+  - title: Packaging Resources
+    detail:
+    - Building asset bundles... {P}%
+    - Compressing textures/audio... {P}%
+    - Writing StreamingAssets...
+    - Generating resource catalogs...
+    taskTime: 2.2
+  - title: Gradle Build
+    detail:
+    - Generating Gradle project... {P}%
+    - Resolving dependencies... {P}%
+    - Running Gradle tasks... {P}%
+    - Producing APK/AAB...
+    taskTime: 4
+  - title: Signing & Aligning
+    detail:
+    - Signing package... {P}%
+    - Zipalign optimization... {P}%
+    - Verifying signature...
+    - Final integrity checks...
+    taskTime: 1.5
+  - title: Postprocess & Export
+    detail:
+    - Cleaning temporary files... {P}%
+    - Generating build report... {P}%
+    - Copying output to destination...
+    - Done.
+    taskTime: 1.2
+  runType: 0
+  textArea: "<Task>\r\n    <title value=\"Prepare Build Environment\"/>\r\n    <taskTime
+    value=\"1.2\"/>\r\n    <detail>\r\n        <l>Validating project settings...
+    {P}%</l>\r\n        <l>Checking Android SDK/NDK/JDK... {P}%</l>\r\n        <l>Resolving
+    scripting backend settings... {P}%</l>\r\n        <l>Preparing build cache...</l>\r\n   
+    </detail>\r\n</Task>\r\n\r\n<Task>\r\n    <title value=\"Refresh Asset Database\"/>\r\n   
+    <taskTime value=\"1.0\"/>\r\n    <detail>\r\n        <l>Scanning assets... {P}%</l>\r\n       
+    <l>Importing changes... {P}%</l>\r\n        <l>Updating meta references...</l>\r\n       
+    <l>Finalizing asset database...</l>\r\n    </detail>\r\n</Task>\r\n\r\n<Task>\r\n   
+    <title value=\"Build Player Scripts\"/>\r\n    <taskTime value=\"2.0\"/>\r\n   
+    <detail>\r\n        <l>Compiling C# scripts... {P}%</l>\r\n        <l>Generating
+    assemblies... {P}%</l>\r\n        <l>Processing asmdef dependencies...</l>\r\n       
+    <l>Applying code stripping rules...</l>\r\n    </detail>\r\n</Task>\r\n\r\n<Task>\r\n   
+    <title value=\"IL2CPP Conversion\"/>\r\n    <taskTime value=\"3.0\"/>\r\n   
+    <detail>\r\n        <l>Converting IL to C++... {P}%</l>\r\n        <l>Generating
+    C++ code... {P}%</l>\r\n        <l>Optimizing generated sources...</l>\r\n       
+    <l>Preparing native toolchain...</l>\r\n    </detail>\r\n</Task>\r\n\r\n<Task>\r\n   
+    <title value=\"Native Compilation\"/>\r\n    <taskTime value=\"3.5\"/>\r\n   
+    <detail>\r\n        <l>Compiling native code... {P}%</l>\r\n        <l>Linking
+    libraries... {P}%</l>\r\n        <l>Stripping symbols... {P}%</l>\r\n       
+    <l>Generating libil2cpp artifacts...</l>\r\n    </detail>\r\n</Task>\r\n\r\n<Task>\r\n   
+    <title value=\"Packaging Resources\"/>\r\n    <taskTime value=\"2.2\"/>\r\n   
+    <detail>\r\n        <l>Building asset bundles... {P}%</l>\r\n        <l>Compressing
+    textures/audio... {P}%</l>\r\n        <l>Writing StreamingAssets...</l>\r\n       
+    <l>Generating resource catalogs...</l>\r\n    </detail>\r\n</Task>\r\n\r\n<Task>\r\n   
+    <title value=\"Gradle Build\"/>\r\n    <taskTime value=\"4.0\"/>\r\n    <detail>\r\n       
+    <l>Generating Gradle project... {P}%</l>\r\n        <l>Resolving dependencies...
+    {P}%</l>\r\n        <l>Running Gradle tasks... {P}%</l>\r\n        <l>Producing
+    APK/AAB...</l>\r\n    </detail>\r\n</Task>\r\n\r\n<Task>\r\n    <title value=\"Signing
+    & Aligning\"/>\r\n    <taskTime value=\"1.5\"/>\r\n    <detail>\r\n        <l>Signing
+    package... {P}%</l>\r\n        <l>Zipalign optimization... {P}%</l>\r\n       
+    <l>Verifying signature...</l>\r\n        <l>Final integrity checks...</l>\r\n   
+    </detail>\r\n</Task>\r\n\r\n<Task>\r\n    <title value=\"Postprocess & Export\"/>\r\n   
+    <taskTime value=\"1.2\"/>\r\n    <detail>\r\n        <l>Cleaning temporary files...
+    {P}%</l>\r\n        <l>Generating build report... {P}%</l>\r\n        <l>Copying
+    output to destination...</l>\r\n        <l>Done.</l>\r\n    </detail>\r\n</Task>\r\n"

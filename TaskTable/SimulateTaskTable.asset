@@ -13,14 +13,16 @@ MonoBehaviour:
   m_Name: SimulateTaskTable
   m_EditorClassIdentifier: 
   simulateTasksTable:
-  - title: A
+  - title: t
     detail:
-    - a{0}
-    - fs{0}
-    taskTime: 0
-  - title: B
+    - Processing1... {P}%
+    taskTime: 1
+  - title: t2
     detail:
-    - b{0}
-    - c{0}
-    taskTime: 0
+    - Processing1... {P}%
+    - Processing2... {P}%
+    taskTime: 1
   runType: 0
+  textArea: "<Task>\r\n    <title value=\"t2\"/>\r\n    <taskTime value=\"1\"/>\r\n   
+    <detail>\r\n        <l>Processing1... {P}%</l>\r\n        <l>Processing2... {P}%</l>\n<l>Processing3...
+    {P}%</l>\n    </detail>\r\n</Task>\r\n"
