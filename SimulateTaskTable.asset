@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f24f1e8d6adb242b908357f129d917, type: 3}
+  m_Name: SimulateTaskTable
+  m_EditorClassIdentifier: 
+  simulateTasksTable:
+  - title: A
+    detail:
+    - a{0}
+    - fs{0}
+    taskTime: 0
+  - title: B
+    detail:
+    - b{0}
+    - c{0}
+    taskTime: 0
+  runType: 0
