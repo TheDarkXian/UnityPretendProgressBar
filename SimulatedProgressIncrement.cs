@@ -20,7 +20,7 @@ class SimulatedProgressIncrement
     {
         float now = (float)EditorApplication.timeSinceStartup;
         nextTriggerTime = now + Random.Range(0f, 3f);
-        increment = Random.Range(0f, 0.08f);
+        increment = Random.Range(0f, 0.1f);
         rampDuration = Random.Range(0.25f, 1.2f);
         emitted = 0f;
         isRamping = false;

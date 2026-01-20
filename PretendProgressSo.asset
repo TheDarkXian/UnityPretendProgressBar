@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07988ee7f3f458146821f60d0e09faf6, type: 3}
+  m_Script: {fileID: 11500000, guid: 795568dd57e6a81428907e3061d87185, type: 3}
   m_Name: PretendProgressSo
   m_EditorClassIdentifier: 
   isBlock: 0
   workTime: 15
-  workType: 1
-  simulateTaskTable: {fileID: 11400000, guid: 9ddd0be8ee5e16e49b8ce160bd0af375, type: 2}
+  workType: 0
+  simulateTaskTable: {fileID: 0}
   showCancleBtn: 1
