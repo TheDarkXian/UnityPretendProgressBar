@@ -15,5 +15,5 @@ MonoBehaviour:
   isBlock: 0
   workTime: 15
   workType: 0
-  simulateTaskTable: {fileID: 0}
+  simulateTaskTable: {fileID: 11400000, guid: 9ddd0be8ee5e16e49b8ce160bd0af375, type: 2}
   showCancleBtn: 1

@@ -12,6 +12,81 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69f24f1e8d6adb242b908357f129d917, type: 3}
   m_Name: PCBuildTaskTable
   m_EditorClassIdentifier: 
-  simulateTasksTable: []
+  simulateTasksTable:
+  - title: Prepare Build Environment
+    detail:
+    - Validating build target... {P}%
+    - Checking graphics API settings... {P}%
+    - Loading build profiles...
+    - Preparing build cache...
+    taskTime: 1
+  - title: Refresh Asset Database
+    detail:
+    - Scanning assets... {P}%
+    - Importing changes... {P}%
+    - Updating meta references...
+    - Finalizing asset database...
+    taskTime: 1
+  - title: Build Player Scripts
+    detail:
+    - Compiling C# scripts... {P}%
+    - Generating assemblies... {P}%
+    - Processing asmdef dependencies...
+    - Applying code stripping rules...
+    taskTime: 2
+  - title: Player Build Pipeline
+    detail:
+    - Building scenes... {P}%
+    - Generating player data... {P}%
+    - Writing configuration files...
+    - Creating output structure...
+    taskTime: 2.5
+  - title: Resource Packaging
+    detail:
+    - Bundling resources... {P}%
+    - Compressing assets... {P}%
+    - Writing StreamingAssets...
+    - Generating manifests...
+    taskTime: 2
+  - title: Finalize Executable
+    detail:
+    - Linking player binaries... {P}%
+    - Copying runtime dependencies... {P}%
+    - Generating symbols (if enabled)...
+    - Validating output...
+    taskTime: 1.8
+  - title: Postprocess & Export
+    detail:
+    - Cleaning temporary files... {P}%
+    - Generating build report... {P}%
+    - Copying output to destination...
+    - Done.
+    taskTime: 1
   runType: 0
-  textArea: 
+  textArea: "<Task>\r\n    <title value=\"Prepare Build Environment\"/>\r\n    <taskTime
+    value=\"1.0\"/>\r\n    <detail>\r\n        <l>Validating build target... {P}%</l>\r\n       
+    <l>Checking graphics API settings... {P}%</l>\r\n        <l>Loading build profiles...</l>\r\n       
+    <l>Preparing build cache...</l>\r\n    </detail>\r\n</Task>\r\n\r\n<Task>\r\n   
+    <title value=\"Refresh Asset Database\"/>\r\n    <taskTime value=\"1.0\"/>\r\n   
+    <detail>\r\n        <l>Scanning assets... {P}%</l>\r\n        <l>Importing changes...
+    {P}%</l>\r\n        <l>Updating meta references...</l>\r\n        <l>Finalizing
+    asset database...</l>\r\n    </detail>\r\n</Task>\r\n\r\n<Task>\r\n    <title
+    value=\"Build Player Scripts\"/>\r\n    <taskTime value=\"2.0\"/>\r\n    <detail>\r\n       
+    <l>Compiling C# scripts... {P}%</l>\r\n        <l>Generating assemblies... {P}%</l>\r\n       
+    <l>Processing asmdef dependencies...</l>\r\n        <l>Applying code stripping
+    rules...</l>\r\n    </detail>\r\n</Task>\r\n\r\n<Task>\r\n    <title value=\"Player
+    Build Pipeline\"/>\r\n    <taskTime value=\"2.5\"/>\r\n    <detail>\r\n       
+    <l>Building scenes... {P}%</l>\r\n        <l>Generating player data... {P}%</l>\r\n       
+    <l>Writing configuration files...</l>\r\n        <l>Creating output structure...</l>\r\n   
+    </detail>\r\n</Task>\r\n\r\n<Task>\r\n    <title value=\"Resource Packaging\"/>\r\n   
+    <taskTime value=\"2.0\"/>\r\n    <detail>\r\n        <l>Bundling resources...
+    {P}%</l>\r\n        <l>Compressing assets... {P}%</l>\r\n        <l>Writing StreamingAssets...</l>\r\n       
+    <l>Generating manifests...</l>\r\n    </detail>\r\n</Task>\r\n\r\n<Task>\r\n   
+    <title value=\"Finalize Executable\"/>\r\n    <taskTime value=\"1.8\"/>\r\n   
+    <detail>\r\n        <l>Linking player binaries... {P}%</l>\r\n        <l>Copying
+    runtime dependencies... {P}%</l>\r\n        <l>Generating symbols (if enabled)...</l>\r\n       
+    <l>Validating output...</l>\r\n    </detail>\r\n</Task>\r\n\r\n<Task>\r\n   
+    <title value=\"Postprocess & Export\"/>\r\n    <taskTime value=\"1.0\"/>\r\n   
+    <detail>\r\n        <l>Cleaning temporary files... {P}%</l>\r\n        <l>Generating
+    build report... {P}%</l>\r\n        <l>Copying output to destination...</l>\r\n       
+    <l>Done.</l>\r\n    </detail>\r\n</Task>\r\n"
