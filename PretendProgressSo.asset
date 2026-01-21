@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 795568dd57e6a81428907e3061d87185, type: 3}
   m_Name: PretendProgressSo
   m_EditorClassIdentifier: 
-  isBlock: 0
-  workTime: 15
+  isBlock: 1
+  workTime: 1
   workType: 0
-  simulateTaskTable: {fileID: 11400000, guid: 9ddd0be8ee5e16e49b8ce160bd0af375, type: 2}
+  simulateTaskTable: {fileID: 11400000, guid: 395d57978662b6d4a8c1229734ebfcd9, type: 2}
   showCancleBtn: 1
