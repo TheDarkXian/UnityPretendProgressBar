@@ -49,28 +49,26 @@ PretendProgress is a fake progress bar tool for the Unity Editor, used to simula
 - `detail`: multi-line detail, `{P}` replaced by percent (0-100)
 - default detail is `Processing... {P}%` when empty
 
-点击 `HandleTextArea` 后，会把文本解析到 `simulateTasksTable`。
+
 Click `HandleTextArea` to parse into `simulateTasksTable`.
 
 ## PretendProgressBarSo  Configuration
 
-`PretendProgressBarSo` 控制进度条行为：
+
 `PretendProgressBarSo` controls progress behavior:
 
 - `isBlock`: block main thread (true=blocking)
 - `workType`:
   - `Forever`: run until canceled
   - `ByTime`: end by `workTime`
+  - `hideAfterRun`: hide Inspect panel and project panel `hideAfterRun`
 - `workTime`: ByTime duration (seconds)
-- `simulateTaskTable`: task table asset
+- `simulateTaskTable`: task table asset , progressbar will show title and detail form this table.
 - `showCancleBtn`: show cancel button (hidden field, be careful)
 
 ##  How to Run
 
-- Inspector：`PretendProgressSo` 面板点击 `StartPretend`
-- 代码调用（Editor 环境）：
-
-- Inspector: click `StartPretend` in `PretendProgressSo`
+- Inspector: click `StartPretend` in `PretendProgressSo`,you can create file on mouse context
 - Code (Editor only):
 
 ```csharp
