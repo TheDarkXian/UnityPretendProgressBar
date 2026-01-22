@@ -117,6 +117,19 @@ namespace PretendProgressBar
 
             s_progress = 0f;
             simulProgressStep = new SimulatedProgressIncrement();
+            simulProgressStep.ConFigureSchedule(
+                pr.smoothNextTriggerMin,
+                pr.smoothNextTriggerMax,
+                pr.smoothIncrementMin,
+                pr.smoothIncrementMax,
+                pr.smoothRampDurationMin,
+                pr.smoothRampDurationMax);
+            simulProgressStep.ConfigureEndStall(
+                pr.stallChance,
+                pr.stallMinHold,
+                pr.stallMaxHold,
+                pr.stallTriggerProgress,
+                pr.stallCapProgress);
 
             if (sthandle == null)
                 sthandle = new SimulateTaskHandle(pr.simulateTaskTable, pr.isBlock);
@@ -149,6 +162,19 @@ namespace PretendProgressBar
             bool showCancelBtn = pretend.showCancleBtn;
             float progress = 0f;
             simulProgressStep = new SimulatedProgressIncrement();
+            simulProgressStep.ConFigureSchedule(
+                pretend.smoothNextTriggerMin,
+                pretend.smoothNextTriggerMax,
+                pretend.smoothIncrementMin,
+                pretend.smoothIncrementMax,
+                pretend.smoothRampDurationMin,
+                pretend.smoothRampDurationMax);
+            simulProgressStep.ConfigureEndStall(
+                pretend.stallChance,
+                pretend.stallMinHold,
+                pretend.stallMaxHold,
+                pretend.stallTriggerProgress,
+                pretend.stallCapProgress);
 
             try
             {
@@ -157,7 +183,7 @@ namespace PretendProgressBar
                     double now = EditorApplication.timeSinceStartup;
                     float elapsed = (float)(now - start);
                     float prevProgress = progress;
-                    progress += simulProgressStep.TryGetIncrement();
+                    progress += simulProgressStep.TryGetIncrement(progress);
                     float displayProgress = Mathf.Repeat(progress, 1f);
                     if (displayProgress < prevProgress)
                         sthandle.Handle(1f);
@@ -188,6 +214,19 @@ namespace PretendProgressBar
             bool showCancelBtn = pretend.showCancleBtn;
 
             simulProgressStep = new SimulatedProgressIncrement();
+            simulProgressStep.ConFigureSchedule(
+                pretend.smoothNextTriggerMin,
+                pretend.smoothNextTriggerMax,
+                pretend.smoothIncrementMin,
+                pretend.smoothIncrementMax,
+                pretend.smoothRampDurationMin,
+                pretend.smoothRampDurationMax);
+            simulProgressStep.ConfigureEndStall(
+                pretend.stallChance,
+                pretend.stallMinHold,
+                pretend.stallMaxHold,
+                pretend.stallTriggerProgress,
+                pretend.stallCapProgress);
             float progress = 0f;
 
             try
@@ -195,7 +234,7 @@ namespace PretendProgressBar
                 while (true)
                 {
                     float prevProgress = progress;
-                    progress += simulProgressStep.TryGetIncrement();
+                    progress += simulProgressStep.TryGetIncrement(progress);
                     float displayProgress = Mathf.Repeat(progress, 1f);
                     if (displayProgress < prevProgress)
                         sthandle.Handle(1f);

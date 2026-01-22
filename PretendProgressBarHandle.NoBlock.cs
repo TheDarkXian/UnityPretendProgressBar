@@ -46,7 +46,7 @@ namespace PretendProgressBar
                 float elapsed = (float)(now - s_startTime);
 
                 float prevProgress = s_progress;
-                s_progress += simulProgressStep.TryGetIncrement();
+                s_progress += simulProgressStep.TryGetIncrement(s_progress);
                 s_progress = Mathf.Repeat(s_progress, 1f);
                 bool wrapped = s_progress < prevProgress;
 

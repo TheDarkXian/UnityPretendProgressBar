@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: PretendProgressSo
   m_EditorClassIdentifier: 
   isBlock: 1
+  hideAfterRun: 0
   workTime: 1
   workType: 0
   simulateTaskTable: {fileID: 11400000, guid: 395d57978662b6d4a8c1229734ebfcd9, type: 2}
