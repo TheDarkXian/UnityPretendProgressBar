@@ -19,6 +19,35 @@ MonoBehaviour:
     - Checking Android SDK/NDK/JDK... {P}%
     - Resolving scripting backend settings... {P}%
     - Preparing build cache...
+    LogWhileCancle:
+    - Failed to compile player scripts UnityEditor.AddressableAssets.Settings.AddressableAssetSettings:BuildPlayerContent
+      (UnityEditor.AddressableAssets.Build.AddressablesPlayerBuildResult&) AddressablesPlayerBuildProcessor:PrepareForPlayerbuild
+      (UnityEditor.AddressableAssets.Settings.AddressableAssetSettings,UnityEditor.Build.BuildPlayerContext,bool)
+      (at ./Library/PackageCache/com.unity.addressables@1.22.3/Editor/Build/AddressablesPlayerBuildProcessor.cs:101)
+      AddressablesPlayerBuildProcessor:PrepareForBuild (UnityEditor.Build.BuildPlayerContext)
+      (at ./Library/PackageCache/com.unity.addressables@1.22.3/Editor/Build/AddressablesPlayerBuildProcessor.cs:80)
+      UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&)
+    - 'SBP ErrorError UnityEditor.AddressableAssets.Settings.AddressableAssetSettings:BuildPlayerContent
+      (UnityEditor.AddressableAssets.Build.AddressablesPlayerBuildResult&) AddressablesPlayerBuildProcessor:PrepareForPlayerbuild
+      (UnityEditor.AddressableAssets.Settings.AddressableAssetSettings,UnityEditor.Build.BuildPlayerContext,bool)
+      (at ./Library/PackageCache/com.unity.addressables@1.22.3/Editor/Build/AddressablesPlayerBuildProcessor.cs:101)
+      AddressablesPlayerBuildProcessor:PrepareForBuild (UnityEditor.Build.BuildPlayerContext)
+      (at ./Library/PackageCache/com.unity.addressables@1.22.3/Editor/Build/AddressablesPlayerBuildProcessor.cs:80)
+      UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&) '
+    - 'Addressable content build failure (duration : 0:00:01.915) UnityEditor.AddressableAssets.Settings.AddressableAssetSettings:BuildPlayerContent
+      (UnityEditor.AddressableAssets.Build.AddressablesPlayerBuildResult&) AddressablesPlayerBuildProcessor:PrepareForPlayerbuild
+      (UnityEditor.AddressableAssets.Settings.AddressableAssetSettings,UnityEditor.Build.BuildPlayerContext,bool)
+      (at ./Library/PackageCache/com.unity.addressables@1.22.3/Editor/Build/AddressablesPlayerBuildProcessor.cs:101)
+      AddressablesPlayerBuildProcessor:PrepareForBuild (UnityEditor.Build.BuildPlayerContext)
+      (at ./Library/PackageCache/com.unity.addressables@1.22.3/Editor/Build/AddressablesPlayerBuildProcessor.cs:80)
+      UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&) '
+    - 'Failed to build Addressables content, content not included in Player Build.
+      "SBP ErrorError" UnityEngine.Debug:LogError (object) AddressablesPlayerBuildProcessor:PrepareForPlayerbuild
+      (UnityEditor.AddressableAssets.Settings.AddressableAssetSettings,UnityEditor.Build.BuildPlayerContext,bool)
+      (at ./Library/PackageCache/com.unity.addressables@1.22.3/Editor/Build/AddressablesPlayerBuildProcessor.cs:104)
+      AddressablesPlayerBuildProcessor:PrepareForBuild (UnityEditor.Build.BuildPlayerContext)
+      (at ./Library/PackageCache/com.unity.addressables@1.22.3/Editor/Build/AddressablesPlayerBuildProcessor.cs:80)
+      UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&) '
     taskTime: 1.2
   - title: Refresh Asset Database
     detail:
@@ -26,6 +55,8 @@ MonoBehaviour:
     - Importing changes... {P}%
     - Updating meta references...
     - Finalizing asset database...
+    LogWhileCancle:
+    - Refresh Cancel
     taskTime: 1
   - title: Build Player Scripts
     detail:
@@ -33,6 +64,7 @@ MonoBehaviour:
     - Generating assemblies... {P}%
     - Processing asmdef dependencies...
     - Applying code stripping rules...
+    LogWhileCancle: []
     taskTime: 2
   - title: IL2CPP Conversion
     detail:
@@ -40,6 +72,7 @@ MonoBehaviour:
     - Generating C++ code... {P}%
     - Optimizing generated sources...
     - Preparing native toolchain...
+    LogWhileCancle: []
     taskTime: 3
   - title: Native Compilation
     detail:
@@ -47,6 +80,7 @@ MonoBehaviour:
     - Linking libraries... {P}%
     - Stripping symbols... {P}%
     - Generating libil2cpp artifacts...
+    LogWhileCancle: []
     taskTime: 3.5
   - title: Packaging Resources
     detail:
@@ -54,6 +88,7 @@ MonoBehaviour:
     - Compressing textures/audio... {P}%
     - Writing StreamingAssets...
     - Generating resource catalogs...
+    LogWhileCancle: []
     taskTime: 2.2
   - title: Gradle Build
     detail:
@@ -61,6 +96,7 @@ MonoBehaviour:
     - Resolving dependencies... {P}%
     - Running Gradle tasks... {P}%
     - Producing APK/AAB...
+    LogWhileCancle: []
     taskTime: 4
   - title: Signing & Aligning
     detail:
@@ -68,6 +104,7 @@ MonoBehaviour:
     - Zipalign optimization... {P}%
     - Verifying signature...
     - Final integrity checks...
+    LogWhileCancle: []
     taskTime: 1.5
   - title: Postprocess & Export
     detail:
@@ -75,6 +112,7 @@ MonoBehaviour:
     - Generating build report... {P}%
     - Copying output to destination...
     - Done.
+    LogWhileCancle: []
     taskTime: 1.2
   runType: 0
   textArea: "<Task>\r\n    <title value=\"Prepare Build Environment\"/>\r\n    <taskTime

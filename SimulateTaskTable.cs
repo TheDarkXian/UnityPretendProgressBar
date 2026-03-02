@@ -37,7 +37,8 @@ public class SimulateTaskTable : ScriptableObject
 
     static readonly Regex DetailLineRegex =
         new Regex(@"<l>([\s\S]*?)</l>", RegexOptions.Compiled);
-
+    static readonly Regex CancleLineRegex =
+          new Regex(@"<c>([\s\S]*?)</c>", RegexOptions.Compiled);
     // ===== Entry =====
     public void HandleTextArea()
     {
@@ -57,8 +58,6 @@ public class SimulateTaskTable : ScriptableObject
             string taskContent = taskMatch.Groups[1].Value;
 
             var task = new SimulateTask();
-            task.detail = new List<string>();
-            task.taskTime = 1f; // default
 
             // ---- title ----
             var titleMatch = TitleRegex.Match(taskContent);
@@ -71,7 +70,7 @@ public class SimulateTaskTable : ScriptableObject
                 task.taskTime = Mathf.Max(0.01f, t);
             }
 
-            // ---- detail ----
+            // ---- detail && Cancle----
             var detailBlockMatch = DetailBlockRegex.Match(taskContent);
             if (detailBlockMatch.Success)
             {
@@ -84,7 +83,17 @@ public class SimulateTaskTable : ScriptableObject
                     if (!string.IsNullOrEmpty(text))
                         task.detail.Add(text);
                 }
+                string cancleBlock = detailBlockMatch.Groups[1].Value;
+                var cancleMatches = CancleLineRegex.Matches(detailBlock);
+
+                foreach (Match line in cancleMatches)
+                {
+                    string text = line.Groups[1].Value.Trim();
+                    if (!string.IsNullOrEmpty(text))
+                        task.LogWhileCancle.Add(text);
+                }
             }
+
 
             if (task.detail.Count == 0)
                 task.detail.Add("Processing... {P}%");
@@ -137,13 +146,29 @@ public class SimulateTaskTable : ScriptableObject
             {
                 foreach (var line in details)
                 {
-                    if (string.IsNullOrWhiteSpace(line)) continue;
+                    if (string.IsNullOrWhiteSpace(line))
+                        continue;
                     sb.Append("        <l>").Append(Escape(line.Trim())).AppendLine("</l>");
                 }
             }
             else
             {
                 sb.AppendLine("        <l>Processing... {P}%</l>");
+            }
+
+            var debugWhileCancel = task.LogWhileCancle;
+            if (debugWhileCancel != null && debugWhileCancel.Count > 0)
+            {
+                foreach (var line in debugWhileCancel)
+                {
+                    if (string.IsNullOrWhiteSpace(line))
+                        continue;
+                    sb.Append("        <c>").Append(Escape(line.Trim())).AppendLine("</c>");
+                }
+            }
+            else
+            {
+                sb.AppendLine("        <c>Cancel</c>");
             }
 
             sb.AppendLine("    </detail>");
@@ -162,7 +187,8 @@ public class SimulateTaskTable : ScriptableObject
 
     static string Escape(string s)
     {
-        if (string.IsNullOrEmpty(s)) return string.Empty;
+        if (string.IsNullOrEmpty(s))
+            return string.Empty;
 
         // 轻量 XML 转义（足够应对你这个格式）
         return s.Replace("&", "&amp;")
@@ -174,11 +200,20 @@ public class SimulateTaskTable : ScriptableObject
 
 [System.Serializable]
 public class SimulateTask
-{   
+{
+    public SimulateTask()
+    {
+
+        detail = new List<string>();
+        LogWhileCancle = new List<string>();
+        taskTime = 1f; // default
+
+    }
     public string title;
     //{0} 是当前进度百分比
     public List<string> detail;
     //任务时长
+    public List<string> LogWhileCancle;
     public float taskTime;
 
 }

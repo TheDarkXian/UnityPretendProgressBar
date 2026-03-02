@@ -48,7 +48,7 @@ namespace PretendProgressBar
             tickStartTime = (float)EditorApplication.timeSinceStartup;
             if (tickStartTime >= ticktime)
             {
-                Debug.Log(tickStartTime + ":" + ticktime);
+                // Debug.Log(tickStartTime + ":" + ticktime);
                 invokeDelay.Invoke();
                 EditorApplication.update -= Tick;
                 invokeDelay = null;
@@ -195,9 +195,18 @@ namespace PretendProgressBar
 
                     bool cancelled = ShowProgress(showCancelBtn, title, detail, progress);
                     PumpEditorUI();
-
                     if (cancelled || elapsed >= duration)
+                    {
+                        var cancelLog = sthandle.LogWhileCancel;
+                        if (cancelLog != null && cancelLog.Count != 0)
+                        {
+                            foreach (var i in cancelLog)
+                            {
+                                Debug.LogError(i);
+                            }
+                        }
                         break;
+                    }
 
                     Thread.Sleep(50);
                 }
@@ -247,7 +256,18 @@ namespace PretendProgressBar
                     bool cancelled = ShowProgress(showCancelBtn, title, detail, displayProgress);
                     PumpEditorUI();
                     if (cancelled)
+                    {
+                        var cancelLog = sthandle.LogWhileCancel;
+                        if (cancelLog != null && cancelLog.Count != 0)
+                        {
+                            foreach (var i in cancelLog)
+                            {
+                                Debug.LogError(i);
+                            }
+                        }
                         break;
+
+                    }
 
                     Thread.Sleep(50);
                 }

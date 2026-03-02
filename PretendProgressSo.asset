@@ -16,7 +16,7 @@ MonoBehaviour:
   hideAfterRun: 1
   workTime: 1
   workType: 0
-  simulateTaskTable: {fileID: 11400000, guid: 395d57978662b6d4a8c1229734ebfcd9, type: 2}
+  simulateTaskTable: {fileID: 11400000, guid: af92dcb93aec2574b90516f6f8805c1c, type: 2}
   showCancleBtn: 1
   smoothNextTriggerMin: 0
   smoothNextTriggerMax: 3
